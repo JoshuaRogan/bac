@@ -1,2 +1,2 @@
-# bac
-Simple BAC Application (Built awhile ago)
+# Simple BAC
+A simple blood alcohol calculator. 
