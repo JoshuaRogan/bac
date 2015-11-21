@@ -1,5 +1,0 @@
-BAC Claculator 
-
-Resources: 
-	-http://www.bac-alcohol-calculator.com/
-	-http://www.brad21.org/effects_at_specific_bac.html
