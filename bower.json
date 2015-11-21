@@ -1,0 +1,29 @@
+{
+  "name": "Blood Alcohol Calculator",
+  "homepage": "simplebac.com",
+  "authors": [
+    "Josh Rogan <jjjr1122@gmail.com>"
+  ],
+  "description": "Simply calculate peak BAC",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "bac",
+    "drinking",
+    "beer",
+    "blood",
+    "alcohol",
+    "level"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8"
+  }
+}
