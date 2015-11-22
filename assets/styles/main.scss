@@ -1,6 +1,7 @@
 //Global 
-//@import "common/variables";
-//@import "common/typography";
+
+//Overrides
+@import "extensions/angular";
 
 // Automatically injected Bower dependencies via wiredep (never manually edit this block)
 // bower:scss
@@ -13,3 +14,4 @@
 //Layouts
 
 //Pages
+@import "pages/app";

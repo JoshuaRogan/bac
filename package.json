@@ -1,5 +1,5 @@
 {
-  "name": "Blood Alcohol Calculator",
+  "name": "bac",
   "version": "1.0.0",
   "description": "Simple BAC Calculator",
   "main": "index.js",

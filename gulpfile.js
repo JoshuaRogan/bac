@@ -218,7 +218,8 @@ gulp.task('images', function() {
             passThroughUnused: true,
             withoutEnlargement: true,
             errorOnEnlargement: false,
-            errorOnUnusedImage: false
+            errorOnUnusedImage: false,
+            errorOnUnusedConfig: false
         }))
         //Compress each image
         .pipe(imagemin({
@@ -250,9 +251,9 @@ gulp.task('clean', require('del').bind(null, [path.dist]));
 // See: http://www.browsersync.io
 gulp.task('watch', function() {
     browserSync.init({
-        files: ['{lib,templates}/**/*.php', '*.php'],
+        files: ['{lib,templates}/**/*.html', '*.html'],
         server: {
-            baseDir: "./app/_site"
+            baseDir: "./app/"
         },
         notify: false
     });
@@ -260,14 +261,14 @@ gulp.task('watch', function() {
     gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
     gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
     gulp.watch([path.source + 'images/**/*'], ['images']);
-    gulp.watch(['./app/**/*', '!./app/_site/**/*', '!./app/dist/**/*'], ['jekyll']);
+    gulp.watch(['./app/**/*'], browserSync.reload);
     gulp.watch(['bower.json', 'assets/manifest.json'], ['build']);
 });
 // ### Build
 // `gulp build` - Run all the build tasks but don't clean up beforehand.
 // Generally you should be running `gulp` instead of `gulp build`.
 gulp.task('build', function(callback) {
-    runSequence('styles', 'scripts', ['fonts', 'images'], 'jekyll', 'favicons', callback);
+    runSequence('styles', 'scripts', ['fonts', 'images'], 'favicons', callback);
 });
 // ### Wiredep
 // `gulp wiredep` - Automatically inject Less and Sass Bower dependencies. See
@@ -278,13 +279,7 @@ gulp.task('wiredep', function() {
         hasChanged: changed.compareSha1Digest
     })).pipe(gulp.dest(path.source + 'styles'));
 });
-//Build jekyll on file changes not in dist
-gulp.task('jekyll', function() {
-    exec('jekyll build --source=app --destination=app/_site', function(err, stdout, stderr) {
-        console.log(stdout);
-        browserSync.reload();
-    });
-});
+
 gulp.task('favicons', function() {
     exec('mkdir app/_site/assets/favicons/ && cp -r assets/favicons/* app/_site/assets/favicons/', function(err, stdout, stderr) {
         browserSync.reload();

@@ -1,0 +1,60 @@
+<html lang="en" ng-app="BacApp">
+    <head>
+        <meta name="viewport" content="initial-scale=1" />
+        <link rel="stylesheet" href="/assets/styles/main.css">
+    </head>
+    <body layout="column" ng-controller="AppController as vm">
+        <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <h1>Simple BAC Calculator </h1>
+        </div>
+        </md-toolbar>
+        <div layout="row" flex>
+            <div layout="column" flex id="main">
+                <md-content layout="column" flex class="md-padding">
+                <form ng-submit="submit()" ng-controller="AppCtrl" ng-cloak>
+                    <div layout="column" layout-align="space-around center">
+                        <div class="bac" id='bacValue'>0.520</div>
+                        <div id="response">Here is the response for this result. </div>
+                        <div id="variables">{{ data.gender }} - {{data.drinks}} Drinks - {{data.weight}}lbs - Food Factor {{ data.food }}</div>
+                    </div>
+                    <p> Gender <span>{{ data.gender }}</span></p>
+                    <md-radio-group ng-model="data.gender">
+                    <md-radio-button value="Male">Male</md-radio-button>
+                    <md-radio-button value="Female">Female</md-radio-button>
+                    </md-radio-group>
+                    <div layout>
+                        <div flex="20" layout layout-align="center center">
+                            <span class="md-body-1">Weight</span>
+                        </div>
+                        <md-slider flex min="50" max="300" ng-model="data.weight" aria-label="drinks" id="drinks-slider" class>
+                        </md-slider>
+                        <div flex="20" layout layout-align="center center">
+                            <input flex type="number" ng-model="data.weight" aria-label="drinks" aria-controls="drinks-slider">
+                        </div>
+                    </div>
+                    <div layout>
+                        <div flex="20" layout layout-align="center center">
+                            <span class="md-body-1"># Drinks</span>
+                        </div>
+                        <md-slider flex min="0" max="25" ng-model="data.drinks" aria-label="drinks" id="drinks-slider" class>
+                        </md-slider>
+                        <div flex="20" layout layout-align="center center">
+                            <input flex type="number" ng-model="data.drinks" aria-label="drinks" aria-controls="drinks-slider">
+                        </div>
+                    </div>
+
+                    <p>Food Factor: <span class="radioValue">{{ data.food }}</span> </p>
+                    <md-radio-group ng-model="data.food">
+                    <md-radio-button value="None">None</md-radio-button>
+                    <md-radio-button value="Small">Small<span> Handful of Chips, pretzels, etc.</span></md-radio-button>
+                    <md-radio-button value="Medium">Medium <span> Couple of slices of pizza</span></md-radio-button>
+                    <md-radio-button value="Large">Large <span> Entire Chicken</span></md-radio-button>
+                    </md-radio-group>
+                </form>
+                </md-content>
+            </div>
+        </div>
+        <script src="/assets/scripts/main.js"></script>
+    </body>
+</html>
