@@ -13,44 +13,78 @@
             <div layout="column" flex id="main">
                 <md-content layout="column" flex class="md-padding">
                 <form ng-submit="submit()" ng-controller="AppCtrl" ng-cloak>
+                    
+
+
                     <div layout="column" layout-align="space-around center">
                         <div class="bac" id='bacValue'>0.520</div>
-                        <div id="response">Here is the response for this result. </div>
-                        <div id="variables">{{ data.gender }} - {{data.drinks}} Drinks - {{data.weight}}lbs - Food Factor {{ data.food }}</div>
-                    </div>
-                    <p> Gender <span>{{ data.gender }}</span></p>
-                    <md-radio-group ng-model="data.gender">
-                    <md-radio-button value="Male">Male</md-radio-button>
-                    <md-radio-button value="Female">Female</md-radio-button>
-                    </md-radio-group>
-                    <div layout>
-                        <div flex="20" layout layout-align="center center">
-                            <span class="md-body-1">Weight</span>
-                        </div>
-                        <md-slider flex min="50" max="300" ng-model="data.weight" aria-label="drinks" id="drinks-slider" class>
-                        </md-slider>
-                        <div flex="20" layout layout-align="center center">
-                            <input flex type="number" ng-model="data.weight" aria-label="drinks" aria-controls="drinks-slider">
-                        </div>
-                    </div>
-                    <div layout>
-                        <div flex="20" layout layout-align="center center">
-                            <span class="md-body-1"># Drinks</span>
-                        </div>
-                        <md-slider flex min="0" max="25" ng-model="data.drinks" aria-label="drinks" id="drinks-slider" class>
-                        </md-slider>
-                        <div flex="20" layout layout-align="center center">
-                            <input flex type="number" ng-model="data.drinks" aria-label="drinks" aria-controls="drinks-slider">
-                        </div>
+                        <!-- <div id="variables">{{data.drinks}} Drinks - {{data.weight}}lbs - Food Factor {{ data.food }}</div> -->
                     </div>
 
-                    <p>Food Factor: <span class="radioValue">{{ data.food }}</span> </p>
-                    <md-radio-group ng-model="data.food">
-                    <md-radio-button value="None">None</md-radio-button>
-                    <md-radio-button value="Small">Small<span> Handful of Chips, pretzels, etc.</span></md-radio-button>
-                    <md-radio-button value="Medium">Medium <span> Couple of slices of pizza</span></md-radio-button>
-                    <md-radio-button value="Large">Large <span> Entire Chicken</span></md-radio-button>
-                    </md-radio-group>
+
+
+                  <md-list>
+                        <md-list-item class="md-3-line md-long-text bac-input">
+                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-list-item-text">
+
+                               <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Gender</label>
+                                    <md-select ng-model="data.gender">
+                                      <md-option ng-repeat="gender in gender_options" value="{{gender.slug}}">
+                                        {{gender.text}}
+
+                                      </md-option>
+                                    </md-select>
+                              </md-input-container>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-3-line md-long-text bac-input">
+                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-list-item-text">
+                                <label>Weight: {{data.weight}} lbs.</label>
+                                <md-slider flex ng-model="data.weight" min="50" max="300" aria-label="weight" id="weight-slider" class="md-primary">
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-3-line md-long-text bac-input">
+                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-list-item-text">
+                                <label>Standard Drinks: {{data.std_drinks}} drinks</label>
+                                <md-slider flex ng-model="data.std_drinks" min="0" max="20" aria-label="standard drinks" id="drinks-slider" class="md-primary">
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-3-line md-long-text bac-input">
+                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-list-item-text">
+                                <label>Drinking Duration: {{data.duration}} hours</label>
+                                <md-slider flex ng-model="data.duration" min="0" max="12" aria-label="duration of drinks" id="duration-slider" class="md-primary">
+                            </div>
+                        </md-list-item>
+
+
+                        <md-list-item class="md-3-line md-long-text bac-input">
+                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-list-item-text">
+
+                               <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Food Influence</label>
+                                    <md-select ng-model="data.food">
+                                      <md-option ng-repeat="food in food_options" value="{{food.slug}}">
+                                        {{food.text}}
+
+                                      </md-option>
+                                    </md-select>
+                              </md-input-container>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+
+
+
+
                 </form>
                 </md-content>
             </div>
