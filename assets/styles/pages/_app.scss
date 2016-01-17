@@ -1,6 +1,37 @@
-#bacValue {
+
+
+#bac-value {
 	color: red;
 	font-size: 10vw;
+
+	//Color Classes 
+	&.default{
+		color: $clr-blue;
+	}
+
+	&.low{
+		color: $clr-green-50;
+	}
+
+	&.good{
+		color: $clr-green; 
+	}
+
+	&.okay{
+		color: $clr-orange;
+	}
+
+	&.over{
+		color: $clr-green-50;
+	}
+
+	&.high{
+		color: $clr-green-50;
+	}
+
+	&.dead{
+		color: $clr-green-50;
+	}
 }
 
 
