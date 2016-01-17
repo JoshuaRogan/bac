@@ -24,6 +24,15 @@
     "tests"
   ],
   "dependencies": {
-    "angular-material": "~1.0.2"
+    "angular-material": "~1.0.2",
+    "mdi": "~1.4.57",
+    "jquery": "~2.2.0"
+  },
+  "overrides": {
+    "mdi": {
+      "main": [
+        "./scss/materialdesignicons.scss"
+      ]
+    }
   }
 }

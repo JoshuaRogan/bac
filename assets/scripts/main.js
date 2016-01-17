@@ -1,6 +1,6 @@
 //Themes
 var app = angular.module('BacApp', ['ngMaterial']).config(function($mdThemingProvider) {
-    $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('light-blue');
+    $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('blue');
 });
 
 //Main Controller
@@ -70,6 +70,7 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
      * @return {[type]} [description]
      */
     $scope.update_bac = function() {
+
     	//Validate Inputs 
     	if($scope.data.gender && $scope.data.weight > 0 && $scope.data.std_drinks > 0 && $scope.data.duration){
     		var body_water_constant = ($scope.data.gender == "male") ? 0.58 : 0.49; 	//Body water constant (0.58 for men and 0.49 for women)	
@@ -102,6 +103,8 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
     	else{ // Not valid
     		$scope.data.bac = '  -';
     	}
+
+    	console.log("update bac"); 
   	};
 
   	//Learn More dialog box to show conclusions 
@@ -109,7 +112,7 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
 		$mdDialog.show(
 			$mdDialog.alert()
 			.parent(angular.element(document.querySelector('#main')))
-			.title('More info')
+			.title('More Info')
 			.clickOutsideToClose(true)
 			.textContent($scope.data.conclusion)
 			.ariaLabel('Alert Dialog Demo')
@@ -117,6 +120,57 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
         	.targetEvent(ev)
 		); 
 	};
+
+
+	//Respond to form updates 
+	$scope.updateGender = function(){
+		if($scope.data.gender == 'female'){
+			$('.md-avatar.gender').addClass('female'); 
+			$('.md-avatar.gender').removeClass('male default'); 
+			$scope.update_bac();
+		}
+		else if($scope.data.gender == 'male'){
+			$('.md-avatar.gender').addClass('male');
+			$('.md-avatar.gender').removeClass('female default');  
+			$scope.update_bac();
+		}
+		else{
+			$('.md-avatar.gender').addClass('default');
+			$('.md-avatar.gender').removeClass('female male');
+		}
+	};
+
+	$scope.updateWeight = function(){
+		if($scope.data.weight > 0){
+			$('.md-avatar.weight').removeClass('default');
+			$scope.update_bac();
+		}
+		else{
+			$('.md-avatar.weight').addClass('default');
+		}
+	};
+
+
+	$scope.updateDrinks = function(){
+		if($scope.data.std_drinks > 0){
+			$('.md-avatar.drinks').removeClass('default');
+			$scope.update_bac();
+		}
+		else{
+			$('.md-avatar.drinks').addClass('default');
+		}
+	};
+
+	$scope.updateDuration = function(){
+		if($scope.data.duration > 0){
+			$('.md-avatar.duration').removeClass('default');
+			$scope.update_bac();
+		}
+		else{
+			$('.md-avatar.duration').addClass('default');
+		}
+	};
+
 
 	
 

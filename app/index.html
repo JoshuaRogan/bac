@@ -14,8 +14,6 @@
                 <md-content layout="column" flex class="md-padding">
                 <form ng-submit="update_bac()" ng-controller="AppCtrl" ng-cloak>
                     
-
-
                     <div layout="column" layout-align="space-around center">
                         <div class="bac {{data.bac_color}}" id='bac-value'>{{data.bac}}</div>
                         <md-button md-no-ink class="md-primary" ng-click="learnMore($event)">Learn More</md-button>
@@ -25,12 +23,12 @@
 
                   <md-list>
                         <md-list-item class="md-3-line md-long-text bac-input">
-                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-avatar mdi gender default"></div>
                             <div class="md-list-item-text">
 
                                <md-input-container class="md-block"  flex-gt-sm>
                                     <label>Gender</label>
-                                    <md-select ng-model="data.gender" ng-change="update_bac()">
+                                    <md-select ng-model="data.gender" ng-change="updateGender()">
                                       <md-option ng-repeat="gender in gender_options" value="{{gender.slug}}">
                                         {{gender.text}}
                                       </md-option>
@@ -42,35 +40,35 @@
                         <md-divider></md-divider>
 
                         <md-list-item class="md-3-line md-long-text bac-input">
-                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-avatar mdi weight scale default"></div>
                             <div class="md-list-item-text">
                                 <label>Weight: {{data.weight}} lbs.</label>
-                                <md-slider flex ng-model="data.weight" ng-change="update_bac()" min="50" max="300" aria-label="weight" id="weight-slider" class="md-primary">
+                                <md-slider flex ng-model="data.weight" ng-change="updateWeight()" min="50" max="300" aria-label="weight" id="weight-slider" class="md-accent">
                             </div>
                         </md-list-item>
 
                          <md-divider></md-divider>
 
                         <md-list-item class="md-3-line md-long-text bac-input">
-                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-avatar mdi drinks beer default"></div>
                             <div class="md-list-item-text">
                                 <label>Standard Drinks: {{data.std_drinks}} drinks</label>
-                                <md-slider flex ng-model="data.std_drinks" ng-change="update_bac()" min="0" max="20" aria-label="standard drinks" id="drinks-slider" class="md-primary">
+                                <md-slider flex ng-model="data.std_drinks" ng-change="updateDrinks()" min="0" max="20" aria-label="standard drinks" id="drinks-slider" class="md-accent">
                             </div>
                         </md-list-item>
                          <md-divider></md-divider>
 
                         <md-list-item class="md-3-line md-long-text bac-input">
-                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                            <div class="md-avatar mdi duration default"></div>
                             <div class="md-list-item-text">
                                 <label>Drinking Duration: {{data.duration}} hours</label>
-                                <md-slider flex ng-model="data.duration" ng-change="update_bac()" min="0" max="12" aria-label="duration of drinks" id="duration-slider" class="md-primary">
+                                <md-slider flex ng-model="data.duration" ng-change="updateDuration()" min="0" max="12" aria-label="duration of drinks" id="duration-slider" class="md-accent">
                             </div>
                         </md-list-item>
                          <md-divider></md-divider>
 
 
-                        <md-list-item class="md-3-line md-long-text bac-input">
+                        <md-list-item class="md-3-line md-long-text bac-input hide">
                             <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
                             <div class="md-list-item-text">
 
