@@ -4,11 +4,7 @@
         <link rel="stylesheet" href="/assets/styles/main.css">
     </head>
     <body layout="column" ng-controller="AppController as vm">
-        <md-toolbar layout="row">
-        <div class="md-toolbar-tools">
-            <h1>Simple BAC Calculator </h1>
-        </div>
-        </md-toolbar>
+
         <div layout="row" flex>
             <div layout="column" flex id="main">
                 <md-content layout="column" flex class="md-padding">
@@ -68,16 +64,15 @@
                          <md-divider></md-divider>
 
 
-                        <md-list-item class="md-3-line md-long-text bac-input hide">
-                            <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
+                        <md-list-item class="md-3-line md-long-text bac-input">
+                            <div class="md-avatar mdi food default"></div>
                             <div class="md-list-item-text">
 
                                <md-input-container class="md-block" flex-gt-sm>
                                     <label>Food Influence</label>
-                                    <md-select ng-model="data.food" ng-change="update_bac()">
+                                    <md-select ng-model="data.food" ng-change="updateFood()">
                                       <md-option ng-repeat="food in food_options" value="{{food.slug}}">
                                         {{food.text}}
-
                                       </md-option>
                                     </md-select>
                               </md-input-container>

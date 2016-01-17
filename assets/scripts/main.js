@@ -1,6 +1,6 @@
 //Themes
 var app = angular.module('BacApp', ['ngMaterial']).config(function($mdThemingProvider) {
-    $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('blue');
+    $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('indigo');
 });
 
 //Main Controller
@@ -17,13 +17,13 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
 	$scope.constants = {
 		kg_in_lbs: 2.20462262185,
 		water_in_blood: 0.806,
-		swedish_grams: 1.2  //Convert to grams set by Swedish National Instuitue of public health
-
+		swedish_grams: 1.2, //Convert to grams set by Swedish National Instuitue of public health
+		meal_adjustment: 0.0123  
 	};
 
     //Data Values
     $scope.data = {
-        food: 'None',
+        food: 0,
         gender: false,
         weight: 0, 
         std_drinks: 0, 
@@ -43,10 +43,10 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
 
     //Food options to more accuratley predict current peak BAC
     $scope.food_options = [
-    	{ text: "None", slug: 'none', extend: 'Tool tip? ' },
-    	{ text: "Small", slug: 'small', extend: 'Tool tip? ' },
-    	{ text: "Medium", slug: 'medium', extend: 'Tool tip? ' },
-    	{ text: "Full", slug: 'full', extend: 'Tool tip? ' }
+    	{ text: "None", slug: '0', extend: 'Tool tip? ' },
+    	{ text: "Small", slug: '1', extend: 'Tool tip? ' },
+    	{ text: "Medium", slug: '2', extend: 'Tool tip? ' },
+    	{ text: "Full Meal", slug: '3', extend: 'Tool tip? ' }
     ];
 
     //Conclusions to help explain the value to the user (Maintain order to prevent having to sort)
@@ -79,6 +79,12 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
     		var bac =  (($scope.constants.water_in_blood * $scope.data.std_drinks * 
     		 	$scope.constants.swedish_grams)/(body_water_constant * weight_kg)) - (metabolism_constant*$scope.data.duration);
 
+    		
+
+    		//Adjust for food using 
+    		bac = bac  - ($scope.data.food * $scope.constants.meal_adjustment);
+    		
+
     		if(bac < 0) bac = 0; 
 
 			//Concat result
@@ -103,8 +109,6 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
     	else{ // Not valid
     		$scope.data.bac = '  -';
     	}
-
-    	console.log("update bac"); 
   	};
 
   	//Learn More dialog box to show conclusions 
@@ -152,7 +156,7 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
 
 
 	$scope.updateDrinks = function(){
-		if($scope.data.std_drinks > 0){
+		if($scope.data.std_drinks >= 0){
 			$('.md-avatar.drinks').removeClass('default');
 			$scope.update_bac();
 		}
@@ -171,6 +175,15 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
 		}
 	};
 
+	$scope.updateFood = function(){
+		if($scope.data.food >= 0){
+			$('.md-avatar.food').removeClass('default');
+			$scope.update_bac();
+		}
+		else{
+			$('.md-avatar.food').addClass('default');
+		}
+	};
 
 	
 

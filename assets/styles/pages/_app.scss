@@ -69,7 +69,7 @@ input[type="number"] {
 		transition: color 200ms ease-out; 
 
 		&.mdi{
-			color: $clr-blue; 
+			color: $clr-indigo; 
 		}
 
 		&.default{
@@ -83,7 +83,7 @@ input[type="number"] {
 
 		&.male{
 			@extend .mdi-gender-male; 
-			color: $clr-blue-300; 
+			color: $clr-blue; 
 		}
 
 		&.female{
@@ -101,6 +101,10 @@ input[type="number"] {
 
 		&.duration{
 			@extend .mdi-clock;
+		}
+
+		&.food{
+			@extend .mdi-food;
 		}
 
 
