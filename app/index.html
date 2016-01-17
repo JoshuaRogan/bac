@@ -67,7 +67,7 @@
                     
                     <div ngCloak layout="column" layout-align="space-around center">
                         <div class="bac {{data.bac_color}}" id='bac-value'>{{data.bac}}</div>
-                        <md-button md-no-ink class="md-primary" ng-click="learnMore($event)">Learn More</md-button>
+                        <md-button md-no-ink class="md-primary" ng-click="showLearnMore($event)">Learn More</md-button>
                     </div>
 
 
@@ -143,5 +143,15 @@
             </div>
         </div>
         <script src="/assets/scripts/main.js"></script>
+        <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-48474201-2', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
     </body>
 </html>

@@ -31,8 +31,7 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
         bac: "- -",
         bac_color: "default",
         valid: false,
-        conclusion: ""
-
+        conclusion: "Welcome to the Simple BAC calculator. This minimalist application computes your peak blood alcohol concentration (EBAC) by considering the number of standard drinks, weight, gender, and food intake."
     };
 
     $scope.gender_options = [
@@ -185,6 +184,39 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
 		}
 	};
 
+	$scope.genderClick = function(){
+		console.log("MOTHER"); 
+	};
+
+	//Learn More Dialog 
+	$scope.showLearnMore = function(ev) {
+	    $mdDialog.show({
+	      controller: DialogController,
+	      templateUrl: 'learnMoreDialog.tmpl.html',
+	      parent: angular.element(document.body),
+	      targetEvent: ev,
+	      clickOutsideToClose:true,
+	      locals: {
+	           conclusion: $scope.data.conclusion,
+	      }
+	    });
+	};
+
 	
 
 });
+
+
+function DialogController($scope, $mdDialog, conclusion) {
+	$scope.conclusion = conclusion;
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
+
