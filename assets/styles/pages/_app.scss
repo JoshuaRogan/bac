@@ -3,34 +3,48 @@
 #bac-value {
 	color: red;
 	font-size: 10vw;
+	transition: color 200ms ease-out; 
 
 	//Color Classes 
 	&.default{
-		color: $clr-blue;
+		color: $clr-blue-grey;
 	}
 
 	&.low{
-		color: $clr-green-50;
+		color: $clr-green;
 	}
 
 	&.good{
-		color: $clr-green; 
+		color: $clr-light-green; 
 	}
 
 	&.okay{
-		color: $clr-orange;
+		color: $clr-amber;
 	}
 
 	&.over{
-		color: $clr-green-50;
+		color: $clr-orange;
 	}
 
 	&.high{
-		color: $clr-green-50;
+		color: $clr-red;
 	}
 
 	&.dead{
-		color: $clr-green-50;
+		color: $clr-grey-900;
+	}
+}
+
+.conclusion{
+	transition: all 300ms ease-out; 
+	text-align: center;
+	min-height: 75px; 
+	font-size: 80%;
+
+	p{
+		margin-top: 0; 
+		margin-bottom: 0; 
+		color: $clr-grey-500;
 	}
 }
 

@@ -10,8 +10,10 @@ app.controller('AppController', function() {
 
 
 //Actual Form to calculate value 
-app.controller('AppCtrl', function($scope) {
-    
+app.controller('AppCtrl', function($scope, $mdDialog) {
+
+	
+
 	$scope.constants = {
 		kg_in_lbs: 2.20462262185,
 		water_in_blood: 0.806,
@@ -29,6 +31,7 @@ app.controller('AppCtrl', function($scope) {
         bac: "- -",
         bac_color: "default",
         valid: false,
+        conclusion: ""
 
     };
 
@@ -46,12 +49,12 @@ app.controller('AppCtrl', function($scope) {
     	{ text: "Full", slug: 'full', extend: 'Tool tip? ' }
     ];
 
-    //Conclusions to help explain the value to the user
+    //Conclusions to help explain the value to the user (Maintain order to prevent having to sort)
     $scope.conclusions = [
     	{lower: 0.01, color: 'low', conclusion: "You are not impaired!"},
     	{lower: 0.03, color: 'good', conclusion: "No loss of coordination, slight euphoria and loss of shyness. Depressant effects are not apparent. Mildly relaxed and maybe a little lightheaded."},
     	{lower: 0.05, color: 'good', conclusion: "Feeling of well-being, relaxation, lower inhibitions, sensation of warmth. Euphoria. Some minor impairment of reasoning and memory, lowering of caution. Your behavior may become exaggerated and emotions intensified (Good emotions are better, bad emotions are worse)"},
-    	{lower: 0.08, color: 'okay', conclusion: "You should not be driving, although still within the legal limit.</p> <p>  Slight impairment of balance, speech, vision, reaction time, and hearing."},
+    	{lower: 0.08, color: 'okay', conclusion: "You should not be driving, although still within the legal limit. Slight impairment of balance, speech, vision, reaction time, and hearing."},
     	{lower: 0.10, color: 'over', conclusion: "You cannot legally drive! Slight impairment of balance, speech, vision, reaction time, and hearing. Euphoria. Judgment and self-control are reduced, and caution, reason and memory are impaired. You will probably believe that you are functioning better than you really are."},
     	{lower: 0.13, color: 'over', conclusion: "You cannot legally drive! Significant impairment of motor coordination and loss of good judgment. Speech may be slurred; balance, vision, reaction time and hearing will be impaired. Euphoria."},
     	{lower: 0.16, color: 'over', conclusion: "You cannot legally drive! Gross motor impairment and lack of physical control. "},
@@ -76,15 +79,45 @@ app.controller('AppCtrl', function($scope) {
     		 	$scope.constants.swedish_grams)/(body_water_constant * weight_kg)) - (metabolism_constant*$scope.data.duration);
 
     		if(bac < 0) bac = 0; 
+
 			//Concat result
 			$scope.data.bac = bac.toFixed(4);  
 
-			//Determine color class
+			//Determine conclusion and color class
+			var conclusion = false;
+			for(var i=0; i<$scope.conclusions.length; i++){
+				if(bac < $scope.conclusions[i].lower){
+					conclusion = $scope.conclusions[i];
+					break; 
+				}
+			}
+			if(!conclusion) conclusion =  {lower: 0.01, color: 'default', conclusion: ""}; //Default Conclusion 
+			
+			//Update Data Model
+			$scope.data.bac_color = conclusion.color;	
+			$scope.data.conclusion = conclusion.conclusion;	
+			
  
     	}
     	else{ // Not valid
     		$scope.data.bac = '  -';
     	}
   	};
+
+  	//Learn More dialog box to show conclusions 
+  	$scope.learnMore = function(ev){
+		$mdDialog.show(
+			$mdDialog.alert()
+			.parent(angular.element(document.querySelector('#main')))
+			.title('More info')
+			.clickOutsideToClose(true)
+			.textContent($scope.data.conclusion)
+			.ariaLabel('Alert Dialog Demo')
+        	.ok('Got it!')
+        	.targetEvent(ev)
+		); 
+	};
+
+	
 
 });

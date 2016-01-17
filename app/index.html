@@ -18,7 +18,7 @@
 
                     <div layout="column" layout-align="space-around center">
                         <div class="bac {{data.bac_color}}" id='bac-value'>{{data.bac}}</div>
-                        <!-- <div id="variables">{{data.drinks}} Drinks - {{data.weight}}lbs - Food Factor {{ data.food }}</div> -->
+                        <md-button md-no-ink class="md-primary" ng-click="learnMore($event)">Learn More</md-button>
                     </div>
 
 
@@ -39,6 +39,8 @@
                             </div>
                         </md-list-item>
 
+                        <md-divider></md-divider>
+
                         <md-list-item class="md-3-line md-long-text bac-input">
                             <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
                             <div class="md-list-item-text">
@@ -47,6 +49,8 @@
                             </div>
                         </md-list-item>
 
+                         <md-divider></md-divider>
+
                         <md-list-item class="md-3-line md-long-text bac-input">
                             <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
                             <div class="md-list-item-text">
@@ -54,6 +58,7 @@
                                 <md-slider flex ng-model="data.std_drinks" ng-change="update_bac()" min="0" max="20" aria-label="standard drinks" id="drinks-slider" class="md-primary">
                             </div>
                         </md-list-item>
+                         <md-divider></md-divider>
 
                         <md-list-item class="md-3-line md-long-text bac-input">
                             <img ng-src="http://placehold.it/300x300" class="md-avatar" alt="Image Text" />
@@ -62,6 +67,7 @@
                                 <md-slider flex ng-model="data.duration" ng-change="update_bac()" min="0" max="12" aria-label="duration of drinks" id="duration-slider" class="md-primary">
                             </div>
                         </md-list-item>
+                         <md-divider></md-divider>
 
 
                         <md-list-item class="md-3-line md-long-text bac-input">
