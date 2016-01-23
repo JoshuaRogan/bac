@@ -19,4 +19,4 @@ The Simple BAC calculator. This minimalist application computes your peak blood 
    [Bower]: <http://bower.io/>
    [Cloudflare]: <https://www.cloudflare.com/overview/>
    [nginx]: <https://www.nginx.com/resources/wiki/>
-   [Digial Ocean]: <https://www.digitalocean.com/features/scaling/>
+   [Digital Ocean]: <https://www.digitalocean.com/features/scaling/>
